@@ -31,9 +31,14 @@ const updateData = event => {
 
 const submitForm = event => {
   event.preventDefault();
-  console.log(userData);
-  localStorage.removeItem('feedback-form-state');
-  form.reset();
+  if (email.value === '' || message.value === '') {
+    alert('Заповніть всі поля форми');
+  } else {
+    console.log(userData);
+    localStorage.removeItem('feedback-form-state');
+    userData.email = '';
+    userData.message = '';
+  }
 };
 
 form.addEventListener('input', throttle(updateData, 500));
