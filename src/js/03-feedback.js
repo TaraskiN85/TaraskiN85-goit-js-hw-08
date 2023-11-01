@@ -7,25 +7,15 @@ const userData = {
   message,
 };
 
-if (localStorage.getItem('feedback-form-state')) {
-  userData.email = JSON.parse(
-    localStorage.getItem('feedback-form-state')
-  ).email;
-  userData.message = JSON.parse(
-    localStorage.getItem('feedback-form-state')
-  ).message;
+const savedData = JSON.parse(localStorage.getItem('feedback-form-state'));
 
-  email.value = userData.email;
-  message.value = userData.message;
+if (savedData) {
+  email.value = savedData.email || '';
+  message.value = savedData.message || '';
 }
 
 const updateData = event => {
-  if (event.target.name === 'email') {
-    userData.email = event.target.value;
-  }
-  if (event.target.name === 'message') {
-    userData.message = event.target.value;
-  }
+  userData[event.target.name] = event.target.value;
   localStorage.setItem('feedback-form-state', JSON.stringify(userData));
 };
 
