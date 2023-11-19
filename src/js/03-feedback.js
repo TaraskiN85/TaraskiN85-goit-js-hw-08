@@ -16,7 +16,6 @@ if (savedData) {
 
 const updateData = event => {
   userData[event.target.name] = event.target.value;
-  console.log(userData);
   localStorage.setItem('feedback-form-state', JSON.stringify(userData));
 };
 
