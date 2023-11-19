@@ -3,8 +3,8 @@ const form = document.querySelector('.feedback-form');
 const [email, message, ...rest] = [...form.elements];
 
 const userData = {
-  email,
-  message,
+  email: '',
+  message: '',
 };
 
 const savedData = JSON.parse(localStorage.getItem('feedback-form-state'));
@@ -16,6 +16,7 @@ if (savedData) {
 
 const updateData = event => {
   userData[event.target.name] = event.target.value;
+  console.log(userData);
   localStorage.setItem('feedback-form-state', JSON.stringify(userData));
 };
 
@@ -28,6 +29,7 @@ const submitForm = event => {
     localStorage.removeItem('feedback-form-state');
     userData.email = '';
     userData.message = '';
+    form.reset();
   }
 };
 
